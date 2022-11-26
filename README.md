@@ -65,7 +65,7 @@ Button(onClick = { state.open() }) {
 ```
 
 ## Troubleshoot
-In some cases you may encounter "Google not Found." message inside `onDialogDismiss` lambda, even if you have already connected a Google account
+In some cases you may encounter <i>"Google Account not Found."</i> message inside `onDialogDismiss` lambda, even if you have already connected a Google account
 on your Android Emulator. Android emulators are prone to that issues <i>(Not sure why and when that's gonna get fixed)</i>.
 My suggestion in that case is to try and add a Google account on some other Android Emulator.
 If that doesn't work, then use a real device.
