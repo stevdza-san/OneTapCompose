@@ -37,7 +37,7 @@ dependencyResolutionManagement {
 ## Usage
 
 Before you can use this library, you need to create a new project on a <a href="https://cloud.google.com/">Google Cloud Platform</a>.
-You need to create OAuth Client ID (WEB), because you will need that same Client ID, in order to implement One-Tap Sign in with Google.
+You need to create OAuth Client ID (ANDROID & WEB), because you will need that same Client ID (WEB), in order to implement One-Tap Sign in with Google.
 </br></br>
 After that, just call `OneTapSignInWithGoogle()` function, and pass that same information you've obtained through Google Cloud Platform.
 You will also pass `OneTapSignInState`, because that state is used later to trigger One-Tap dialog.
