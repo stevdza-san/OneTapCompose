@@ -15,7 +15,7 @@ It hides all the boilerplate code away from you.
 </p>
 
 ## Download
-<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.0"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.4/orange?icon=github"/></a>
+<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.0"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.0/orange?icon=github"/></a>
 
 ### Gradle
 
