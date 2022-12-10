@@ -6,7 +6,7 @@
 </p><br>
 
 <p align="center">
-This library allow you to easily integrate One-Tap Sign in wih Google to your project.
+This library allow you to easily integrate One-Tap Sign in wih Google to your project with Jetpack Compose.
 It hides all the boilerplate code away from you.
 </p><br>
 
