@@ -33,7 +33,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.3.1'
+        kotlinCompilerExtensionVersion '1.4.2'
     }
     publishing {
         singleVariant("release") {
@@ -44,10 +44,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.activity:activity-compose:1.6.1'
+    implementation 'androidx.activity:activity-compose:1.7.1'
 
     // Google Auth
-    implementation "com.google.android.gms:play-services-auth:20.4.0"
+    implementation "com.google.android.gms:play-services-auth:20.5.0"
 }
 
 publishing {
@@ -55,7 +55,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.0'
+            version = '1.0.1'
 
             afterEvaluate {
                 from components.release

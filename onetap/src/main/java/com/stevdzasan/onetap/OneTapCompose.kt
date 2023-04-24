@@ -1,6 +1,7 @@
 package com.stevdzasan.onetap
 
 import android.app.Activity
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +18,8 @@ import com.google.android.gms.common.api.CommonStatusCodes
 fun rememberOneTapSignInState(): OneTapSignInState {
     return remember { OneTapSignInState() }
 }
+
+const val TAG = "OneTapCompose"
 
 /**
  * Composable that allows you to easily integrate One-Tap Sign in with Google
@@ -121,6 +124,7 @@ private fun signIn(
                 )
             } catch (e: Exception) {
                 onError(e.message.toString())
+                Log.e(TAG, "${e.message}")
             }
         }
         .addOnFailureListener {
@@ -131,6 +135,7 @@ private fun signIn(
                 launchActivityResult = launchActivityResult,
                 onError = onError
             )
+            Log.e(TAG, "${it.message}")
         }
 }
 
@@ -167,5 +172,6 @@ private fun signUp(
         }
         .addOnFailureListener {
             onError("Google Account not Found.")
+            Log.e(TAG, "${it.message}")
         }
 }
