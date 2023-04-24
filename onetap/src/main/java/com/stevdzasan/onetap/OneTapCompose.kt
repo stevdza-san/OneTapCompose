@@ -59,6 +59,7 @@ fun OneTapSignInWithGoogle(
                 state.close()
             }
         } catch (e: ApiException) {
+            Log.e(TAG, "${e.message}")
             when (e.statusCode) {
                 CommonStatusCodes.CANCELED -> {
                     onDialogDismissed("Dialog Canceled.")
