@@ -168,6 +168,7 @@ private fun signUp(
                 )
             } catch (e: Exception) {
                 onError(e.message.toString())
+                Log.e(TAG, "${e.message}")
             }
         }
         .addOnFailureListener {
