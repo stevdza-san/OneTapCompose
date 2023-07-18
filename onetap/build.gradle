@@ -52,7 +52,7 @@ dependencies {
 
 publishing {
     publications {
-        release(MavenPublication) {
+        maven(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
             version = '1.0.4'
