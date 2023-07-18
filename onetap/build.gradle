@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.stevdzasan.onetap'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -44,10 +44,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'androidx.activity:activity-compose:1.7.2'
 
     // Google Auth
-    implementation "com.google.android.gms:play-services-auth:20.5.0"
+    implementation "com.google.android.gms:play-services-auth:20.6.0"
 }
 
 publishing {
@@ -55,7 +55,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.3'
+            version = '1.0.4'
 
             afterEvaluate {
                 from components.release
