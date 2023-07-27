@@ -22,7 +22,7 @@ It hides all the boilerplate code away from you.
 Add the dependency below to your module's `build.gradle` file:
 ```gradle
 dependencies {
-    implementation 'com.github.stevdza-san:OneTapCompose:1.0.3'
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.3")
 }
 ```
 Add a repository in your `settings.gradle` file:
@@ -30,7 +30,7 @@ Add a repository in your `settings.gradle` file:
 dependencyResolutionManagement {
     repositories {
         ...
-        maven { url 'https://jitpack.io' }
+        maven(url = "https://jitpack.io")
     }
 }
 ```
