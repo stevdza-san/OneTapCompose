@@ -55,11 +55,16 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.6'
+            version = '1.0.6.1'
 
             afterEvaluate {
                 from components.release
             }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://jitpack.io'
         }
     }
 }
