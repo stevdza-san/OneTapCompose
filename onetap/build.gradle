@@ -33,7 +33,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.2'
+        kotlinCompilerExtensionVersion '1.4.6'
     }
     publishing {
         singleVariant("release") {
@@ -55,7 +55,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.5'
+            version = '1.0.6'
 
             afterEvaluate {
                 from components.release
