@@ -44,10 +44,13 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation 'androidx.activity:activity-compose:1.8.0'
 
     // Google Auth
     implementation "com.google.android.gms:play-services-auth:20.6.0"
+
+    // JWT Decoder
+    implementation("com.auth0.android:jwtdecode:2.0.2")
 }
 
 publishing {
@@ -55,7 +58,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.7'
+            version = '1.0.8'
 
             afterEvaluate {
                 from components.release
