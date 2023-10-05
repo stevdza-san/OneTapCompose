@@ -73,6 +73,18 @@ onTokenIdReceived = { tokenId ->
 }
 ```
 
+Available `GoogleUser` information:
+- Sub
+- Email
+- EmailVerified
+- FullName
+- GivenName
+- FamilyName
+- Picture
+- IssuedAt
+- ExpirationTime
+- Locale
+
 ## Troubleshoot
 In some cases you may encounter <i>"Google Account not Found."</i> message inside `onDialogDismiss` lambda, even if you have already connected a Google account
 on your Android Emulator. Android emulators are prone to that issues <i>(Not sure why and when that's gonna get fixed)</i>.
