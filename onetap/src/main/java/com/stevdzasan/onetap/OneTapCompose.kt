@@ -27,6 +27,9 @@ const val TAG = "OneTapCompose"
  * @param state - One-Tap Sign in State.
  * @param clientId - CLIENT ID (Web) of your project, that you can obtain from
  * a Google Cloud Platform.
+ * @param rememberAccount - Remember a selected account to sign in with, for an easier
+ * and quicker sign in process. Set this value to false, if you always want be prompted
+ * to select from multiple available accounts.
  * @param nonce - Optional nonce that can be used when generating a Google Token ID.
  * @param onTokenIdReceived - Lambda that will be triggered after a successful
  * authentication. Returns a Token ID.
@@ -37,6 +40,7 @@ const val TAG = "OneTapCompose"
 fun OneTapSignInWithGoogle(
     state: OneTapSignInState,
     clientId: String,
+    rememberAccount: Boolean = true,
     nonce: String? = null,
     onTokenIdReceived: (String) -> Unit,
     onDialogDismissed: (String) -> Unit,
@@ -82,6 +86,7 @@ fun OneTapSignInWithGoogle(
             signIn(
                 activity = activity,
                 clientId = clientId,
+                rememberAccount = rememberAccount,
                 nonce = nonce,
                 launchActivityResult = { intentSenderRequest ->
                     activityLauncher.launch(intentSenderRequest)
@@ -98,6 +103,7 @@ fun OneTapSignInWithGoogle(
 private fun signIn(
     activity: Activity,
     clientId: String,
+    rememberAccount: Boolean,
     nonce: String?,
     launchActivityResult: (IntentSenderRequest) -> Unit,
     onError: (String) -> Unit
@@ -109,7 +115,7 @@ private fun signIn(
                 .setSupported(true)
                 .setNonce(nonce)
                 .setServerClientId(clientId)
-                .setFilterByAuthorizedAccounts(true)
+                .setFilterByAuthorizedAccounts(rememberAccount)
                 .build()
         )
         .setAutoSelectEnabled(true)

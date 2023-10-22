@@ -58,7 +58,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.8'
+            version = '1.0.9'
 
             afterEvaluate {
                 from components.release
