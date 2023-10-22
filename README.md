@@ -1,7 +1,7 @@
 <h1 align="center">One-Tap Sign in with Google</h1></br>
 
 <p align="center">
-  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.7"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.7/orange?icon=github"/></a>
+  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.8"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.8/orange?icon=github"/></a>
   <a href="https://github.com/stevdza-san"><img alt="Profile" src="https://badgen.net/badge/Github/stevdza_san/green?icon=github"/></a>
 </p><br>
 
@@ -12,17 +12,18 @@ It hides all the boilerplate code away from you.
 
 <p align="center">
 <img src="https://github.com/stevdza-san/OneTapCompose/blob/master/previews/OneTap.gif" width="268"/>
+  <img src="https://github.com/stevdza-san/OneTapCompose/blob/master/previews/OneTap2.gif" width="268"/>
 </p>
 
 ## Download
-<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.7"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.7/orange?icon=github"/></a>
+<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.8"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.8/orange?icon=github"/></a>
 
 ### Gradle
 
 Add the dependency below to your module's `build.gradle` file:
 ```gradle
 dependencies {
-    implementation("com.github.stevdza-san:OneTapCompose:1.0.7")
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.8")
 }
 ```
 Add a repository in your `settings.gradle` file:
@@ -63,6 +64,26 @@ Button(onClick = { state.open() }) {
     Text(text = "Sign in")
 }
 ```
+
+And if you wish to extract a user information from a token id, that's now possible too! `getUserFromTokenId()` allows you to do exactly that. It returns a `GoogleUser` object, that contains lot's of different information related to that same user.
+
+```kotlin
+onTokenIdReceived = { tokenId ->
+    Log.d("LOG", getUserFromTokenId(tokenId).toString())
+}
+```
+
+Available `GoogleUser` information:
+- Sub
+- Email
+- EmailVerified
+- FullName
+- GivenName
+- FamilyName
+- Picture
+- IssuedAt
+- ExpirationTime
+- Locale
 
 ## Troubleshoot
 In some cases you may encounter <i>"Google Account not Found."</i> message inside `onDialogDismiss` lambda, even if you have already connected a Google account
