@@ -87,7 +87,7 @@ Available `GoogleUser` information:
 
 ## Release Build
 If you are planning on publishing your app, be sure to generate a release SHA-1 fingerprint, and create a new oAuth credentials on your Google Cloud Platform project.
-Also when you upload your app on Play Console, you'll find there a section that will generate the release SHA-1 fingerprint. You take it and create another oAuth credential.
+Also when you upload your app on Play Console, you'll find there a section (`Release > Setup > App signing`) that will generate the release SHA-1 fingerprint. You take it and create another oAuth credential.
 
 ## Troubleshoot
 In some cases you may encounter <i>"Google Account not Found."</i> message inside `onDialogDismiss` lambda, even if you have already connected a Google account
