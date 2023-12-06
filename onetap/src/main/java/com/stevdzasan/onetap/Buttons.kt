@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -48,6 +49,7 @@ import androidx.compose.ui.unit.dp
  * @param colors [ButtonColors] that will be used to resolve the colors for this button in different
  * states.
  * @param border the border to draw around the container of this button
+ * @param shape defines the shape of this button's container, border (when [border] is not null)
  * @param onClick called when this button is clicked
  */
 @Composable
@@ -86,6 +88,7 @@ fun OneTapSignInWithGoogleButton(
 
         GoogleButtonTheme.Neutral -> null
     },
+    shape: Shape = ButtonDefaults.shape,
     onClick: (() -> Unit)? = null,
 ) {
     OneTapSignInWithGoogle(
@@ -112,6 +115,7 @@ fun OneTapSignInWithGoogleButton(
             state.open()
             onClick?.invoke()
         },
+        shape = shape,
         colors = colors,
         contentPadding = PaddingValues(horizontal = if (iconOnly) 9.5.dp else 12.dp),
         border = border,
