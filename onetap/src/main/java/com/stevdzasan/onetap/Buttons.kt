@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.dp
  * Composable that allows you to easily integrate One-Tap Sign in with Google in your project while
  * following the official Google Sign in button design guidelines.
  *
- * @see <a href="https://developers.google.com/identity/branding-guidelines#font">Sign in with
- * Google Branding Guidelines</a>
+ * @see <a href="https://developers.google.com/identity/branding-guidelines">Sign in with Google
+ * Branding Guidelines</a>
  *
  * @param clientId CLIENT ID (Web) of your project, that you can obtain from a Google Cloud Platform.
  * @param state One-Tap Sign in State.
