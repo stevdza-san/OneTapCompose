@@ -33,7 +33,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.6'
+        kotlinCompilerExtensionVersion '1.5.5'
     }
     publishing {
         singleVariant("release") {
@@ -45,7 +45,7 @@ android {
 
 dependencies {
     // Compose
-    implementation 'androidx.activity:activity-compose:1.8.0'
+    implementation 'androidx.activity:activity-compose:1.8.1'
     implementation("androidx.compose.material3:material3:1.1.2")
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
@@ -62,7 +62,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.9'
+            version = '1.0.10'
 
             afterEvaluate {
                 from components.release

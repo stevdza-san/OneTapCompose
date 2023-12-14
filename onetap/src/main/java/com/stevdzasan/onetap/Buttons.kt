@@ -1,6 +1,5 @@
 package com.stevdzasan.onetap
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -97,14 +96,12 @@ fun OneTapSignInWithGoogleButton(
         rememberAccount = rememberAccount,
         nonce = nonce,
         onTokenIdReceived = { tokenId ->
-            Log.d(ButtonTAG, "onTokenIdReceived: $tokenId")
             onTokenIdReceived?.invoke(tokenId)
             getUserFromTokenId(tokenId = tokenId)?.let { googleUser ->
                 onUserReceived?.invoke(googleUser)
             }
         },
         onDialogDismissed = { message ->
-            Log.d(ButtonTAG, message)
             onDialogDismissed?.invoke(message)
         }
     )
@@ -144,8 +141,6 @@ private val RobotoFontFamily = FontFamily(
         style = FontStyle.Normal
     )
 )
-
-private const val ButtonTAG = "OneTapSignInWithGoogle"
 
 @Preview
 @Composable
