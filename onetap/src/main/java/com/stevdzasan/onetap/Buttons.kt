@@ -40,8 +40,8 @@ import androidx.compose.ui.unit.dp
  * @param onTokenIdReceived Lambda that will be triggered after a successful
  * authentication. Returns a Token ID.
  * @param onUserReceived This function returns a [GoogleUser] object using the received tokenId.
- * @param onDialogDismissed Lambda that will be triggered when One-Tap dialog.
- * disappears. Returns a message in a form of a string.
+ * @param onDialogDismissed Lambda that will be triggered when One-Tap dialog disappears.
+ * Returns a message in a form of a string.
  * @param iconOnly Whether the button should only show the Google logo.
  * @param theme Sets the button style to either be Light, Dark, or Neutral which is in accordance
  * with the official Google design guidelines.
