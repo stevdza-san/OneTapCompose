@@ -29,7 +29,8 @@ const val TAG = "OneTapCompose"
  * a Google Cloud Platform.
  * @param rememberAccount - Remember a selected account to sign in with, for an easier
  * and quicker sign in process. Set this value to false, if you always want be prompted
- * to select from multiple available accounts.
+ * to select from multiple available accounts. You will be able to automatically sign in
+ * with a remembered account, only if you have selected a single account from the list.
  * @param nonce - Optional nonce that can be used when generating a Google Token ID.
  * @param onTokenIdReceived - Lambda that will be triggered after a successful
  * authentication. Returns a Token ID.
