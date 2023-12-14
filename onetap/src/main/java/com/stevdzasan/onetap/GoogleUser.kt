@@ -1,9 +1,11 @@
 package com.stevdzasan.onetap
 
 import android.util.Log
+import androidx.compose.runtime.Immutable
 import com.auth0.android.jwt.DecodeException
 import com.auth0.android.jwt.JWT
 
+@Immutable
 data class GoogleUser(
     val sub: String?,
     val email: String?,
