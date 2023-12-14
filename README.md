@@ -1,7 +1,7 @@
 <h1 align="center">One-Tap Sign in with Google</h1></br>
 
 <p align="center">
-  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.8"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.8/orange?icon=github"/></a>
+  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.9"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.9/orange?icon=github"/></a>
   <a href="https://github.com/stevdza-san"><img alt="Profile" src="https://badgen.net/badge/Github/stevdza_san/green?icon=github"/></a>
 </p><br>
 
@@ -16,14 +16,14 @@ It hides all the boilerplate code away from you.
 </p>
 
 ## Download
-<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.8"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.8/orange?icon=github"/></a>
+<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.9"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.9/orange?icon=github"/></a>
 
 ### Gradle
 
 Add the dependency below to your module's `build.gradle` file:
 ```gradle
 dependencies {
-    implementation("com.github.stevdza-san:OneTapCompose:1.0.8")
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.9")
 }
 ```
 Add a repository in your `settings.gradle` file:
@@ -85,11 +85,17 @@ Available `GoogleUser` information:
 - ExpirationTime
 - Locale
 
+## Release Build
+If you are planning on publishing your app, be sure to generate a release SHA-1 fingerprint, and create a new oAuth credentials on your Google Cloud Platform project.
+Also when you upload your app on Play Console, you'll find there a section (`Release > Setup > App signing`) that will generate the release SHA-1 fingerprint. You take it and create another oAuth credential.
+
 ## Troubleshoot
 In some cases you may encounter <i>"Google Account not Found."</i> message inside `onDialogDismiss` lambda, even if you have already connected a Google account
 on your Android Emulator. Android emulators are prone to that issues <i>(Not sure why and when that's gonna get fixed)</i>.
 My suggestion in that case is to try and add a Google account on some other Android Emulator.
 If that doesn't work either, then use a real device instead.
+
+Also to debug your app better, check the logs and search for a `OneTapCompose` tag, it might contain additional information to help you out with your issue.
 
 ## Like what you see? :yellow_heart:
 ⭐ Give a star to this repository. <br />
