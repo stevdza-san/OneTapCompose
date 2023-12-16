@@ -159,7 +159,7 @@ If that doesn't work either, then use a real device instead.
 
 Also to debug your app better, check the logs and search for a `OneTapCompose` tag, it might contain additional information to help you out with your issue.
 
-## Like what you see? :yellow_heart:
+# Like what you see? :yellow_heart:
 ⭐ Give a star to this repository. <br />
 ☕ Buy me a coffee: https://ko-fi.com/stevdza_san
 
