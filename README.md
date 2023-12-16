@@ -65,6 +65,8 @@ Button(onClick = { state.open() }) {
 }
 ```
 
+## Google User
+
 And if you wish to extract a user information from a token id, that's now possible too! `getUserFromTokenId()` allows you to do exactly that. It returns a `GoogleUser` object, that contains lot's of different information related to that same user.
 
 ```kotlin
