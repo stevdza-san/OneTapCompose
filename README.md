@@ -15,7 +15,7 @@ It hides all the boilerplate code away from you.
   <img src="https://github.com/stevdza-san/OneTapCompose/blob/master/previews/OneTap2.gif" width="268"/>
 </p>
 
-## Download
+# Download
 <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.10"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.10/orange?icon=github"/></a>
 
 ### Gradle
@@ -35,7 +35,7 @@ dependencyResolutionManagement {
     }
 }
 ```
-## Usage
+# Usage
 
 Before you can use this library, you need to create a new project on a <a href="https://cloud.google.com/">Google Cloud Platform</a>.
 You need to create OAuth Client ID <i>(ANDROID & WEB)</i>, because you will need that same Client ID (WEB), in order to implement One-Tap Sign in with Google.
@@ -65,7 +65,7 @@ Button(onClick = { state.open() }) {
 }
 ```
 
-## Google User
+# Google User
 
 And if you wish to extract a user information from a token id, that's now possible too! `getUserFromTokenId()` allows you to do exactly that. It returns a `GoogleUser` object, that contains lot's of different information related to that same user.
 
@@ -87,7 +87,7 @@ Available `GoogleUser` information:
 - ExpirationTime
 - Locale
 
-## Sign in with Google Button
+# Sign in with Google Button
 
 You can also use a drop-in opinionated button composable that works out of the box and encapsulates all the
 sign in logic and follows Google's [Sign in with Google Branding Guidelines](https://developers.google.com/identity/branding-guidelines):
