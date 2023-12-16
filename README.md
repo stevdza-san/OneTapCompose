@@ -87,7 +87,7 @@ Available `GoogleUser` information:
 - ExpirationTime
 - Locale
 
-# Sign in with Google Button
+## Sign in with Google Button
 
 You can also use a drop-in opinionated button composable that works out of the box and encapsulates all the
 sign in logic and follows Google's [Sign in with Google Branding Guidelines](https://developers.google.com/identity/branding-guidelines):
