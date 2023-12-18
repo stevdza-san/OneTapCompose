@@ -157,6 +157,8 @@ on your Android Emulator. Android emulators are prone to that issues <i>(Not sur
 My suggestion in that case is to try and add a Google account on some other Android Emulator.
 If that doesn't work either, then use a real device instead.
 
+> It's important to implement your own rate limiting of One Tap sign-in prompts. If you don't, and a user cancels several prompts in a row, the One Tap client will not prompt the user for the next 24 hours.
+
 Also to debug your app better, check the logs and search for a `OneTapCompose` tag, it might contain additional information to help you out with your issue.
 
 # Like what you see? :yellow_heart:
