@@ -52,7 +52,7 @@ import androidx.compose.ui.unit.dp
  * @param onClick called when this button is clicked
  */
 @Composable
-fun OneTapSignInWithGoogleButton(
+fun OneTapGoogleButton(
     clientId: String,
     state: OneTapSignInState = rememberOneTapSignInState(),
     rememberAccount: Boolean = true,
@@ -145,7 +145,7 @@ private val RobotoFontFamily = FontFamily(
 @Preview
 @Composable
 private fun LightIconButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Light,
         iconOnly = true,
@@ -155,7 +155,7 @@ private fun LightIconButtonPreview() {
 @Preview
 @Composable
 private fun DarkIconButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Dark,
         iconOnly = true,
@@ -165,7 +165,7 @@ private fun DarkIconButtonPreview() {
 @Preview
 @Composable
 private fun NeutralIconButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Neutral,
         iconOnly = true,
@@ -175,7 +175,7 @@ private fun NeutralIconButtonPreview() {
 @Preview
 @Composable
 private fun LightFullButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Light,
     )
@@ -184,7 +184,7 @@ private fun LightFullButtonPreview() {
 @Preview
 @Composable
 private fun DarkFullButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Dark,
     )
@@ -193,7 +193,7 @@ private fun DarkFullButtonPreview() {
 @Preview
 @Composable
 private fun NeutralFullButtonPreview() {
-    OneTapSignInWithGoogleButton(
+    OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Neutral,
     )

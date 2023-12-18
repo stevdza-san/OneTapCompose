@@ -45,16 +45,28 @@ android {
 
 dependencies {
     // Compose
-    implementation 'androidx.activity:activity-compose:1.8.1'
+    implementation 'androidx.activity:activity-compose:1.8.2'
     implementation("androidx.compose.material3:material3:1.1.2")
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
 
+    // Contains the core Credential Manager functionalities including password
+    // and passkey support.
+    implementation("androidx.credentials:credentials:1.3.0-alpha01")
+    // Provides support from Google Play services for Credential Manager,
+    // which lets you use the APIs on older devices.
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha01")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
+
     // Google Auth
-    implementation "com.google.android.gms:play-services-auth:20.6.0"
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
 
     // JWT Decoder
     implementation("com.auth0.android:jwtdecode:2.0.2")
+
+    // Gson needed for Proguard rules for JWT Decoder library (For now).
+    // Because JWT Decoder doesn't add those Proguard rules by default.
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 publishing {
@@ -62,7 +74,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.stevdza-san'
             artifactId = 'OneTapCompose'
-            version = '1.0.10'
+            version = '1.0.11'
 
             afterEvaluate {
                 from components.release
