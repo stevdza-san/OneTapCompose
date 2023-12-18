@@ -93,7 +93,7 @@ You can also use a drop-in opinionated button composable that works out of the b
 sign in logic and follows Google's [Sign in with Google Branding Guidelines](https://developers.google.com/identity/branding-guidelines):
 
 ```kotlin
-OneTapSignInWithGoogleButton(
+OneTapGoogleButton(
     clientId = "YOUR_CLIENT_ID"
 )
 ```
@@ -109,7 +109,7 @@ According to the design guidelines, the button is available in 3 themes:
 
 You can customise the theme using the `theme` parameter in the composable:
 ```kotlin
-OneTapSignInWithGoogleButton(
+OneTapGoogleButton(
     clientId = "YOUR_CLIENT_ID",
     theme = GoogleButtonTheme.Neutral
 )
@@ -124,7 +124,7 @@ The buttons are also available in icon-only mode for all the themes:
 It can be activated using the `iconOnly` parameter in the composable:
 
 ```kotlin
-OneTapSignInWithGoogleButton(
+OneTapGoogleButton(
     clientId = "YOUR_CLIENT_ID",
     iconOnly = true
 )
