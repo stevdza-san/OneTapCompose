@@ -7,7 +7,7 @@
 
 <p align="center">
 This library allow you to easily integrate One-Tap Sign in with Google(Credential Manager) to your project with Jetpack Compose. 
-It hides all the boilerplate code away from you.
+It hides all the boilerplate code away from you. You get an extracted `GoogleUser` object that you can use to obtain a basic user information. And there's a new `OneTapGoogleButton` composable that you can use out of the box, with various customization options.
 </p><br>
 
 <p align="center">
