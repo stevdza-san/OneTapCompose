@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                 var user: GoogleUser? by remember { mutableStateOf(null) }
                 OneTapSignInWithGoogle(
                     state = state,
-                    clientId = "271505362417-5rvvc1d5aff4dbrp0dqf9gm802v9fkml.apps.googleusercontent.com",
+                    clientId = "CLIENT_ID",
                     rememberAccount = false,
                     onTokenIdReceived = {
                         user = getUserFromTokenId(tokenId = it)
