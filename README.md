@@ -6,7 +6,7 @@
 </p><br>
 
 <p align="center">
-This library allow you to easily integrate One-Tap Sign in with Google(Credential Manager) to your project with Jetpack Compose. 
+This library allow you to easily integrate One-Tap Sign in with Google(<a href="https://developer.android.com/training/sign-in/credential-manager">Credential Manager</a>) to your project with Jetpack Compose. 
 It hides all the boilerplate code away from you. You get an extracted <a href="#google-user">Google User</a> object that you can use to obtain a basic user information. And there's a new <a href="#sign-in-with-google-button">OneTapGoogleButton</a> composable that you can use out of the box, with various customization options.
 </p><br>
 
