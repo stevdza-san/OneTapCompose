@@ -1,6 +1,6 @@
 package com.stevdzasan.onetap
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
@@ -56,7 +56,7 @@ fun OneTapSignInWithGoogle(
     onDialogDismissed: (String) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current as Activity
+    val context = LocalContext.current
     val credentialManager = remember { CredentialManager.create(context) }
 
     val googleIdOption = remember {
@@ -177,7 +177,7 @@ private fun handleSignIn(
 }
 
 private suspend fun handleCredentialsNotAvailable(
-    context: Activity,
+    context: Context,
     state: OneTapSignInState,
     credentialManager: CredentialManager,
     clientId: String,
@@ -215,7 +215,7 @@ private suspend fun handleCredentialsNotAvailable(
     } catch (e: GetCredentialException) {
         try {
             if (e.message!!.contains("No credentials available")) {
-                openGoogleAccountSettings(activity = context)
+                openGoogleAccountSettings(context = context)
             }
             val errorMessage = if (e.message != null) {
                 if (e.message!!.contains("activity is cancelled by the user.")) {
@@ -241,12 +241,12 @@ private suspend fun handleCredentialsNotAvailable(
     }
 }
 
-fun openGoogleAccountSettings(activity: Activity) {
+fun openGoogleAccountSettings(context: Context) {
     try {
         val addAccountIntent = Intent(Settings.ACTION_ADD_ACCOUNT).apply {
             putExtra(Settings.EXTRA_ACCOUNT_TYPES, arrayOf("com.google"))
         }
-        activity.startActivity(addAccountIntent)
+        context.startActivity(addAccountIntent)
     } catch (e: Exception) {
         Log.e(TAG, "openGoogleAccountSettings Error: $e")
     }
