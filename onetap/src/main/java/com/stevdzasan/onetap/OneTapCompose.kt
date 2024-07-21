@@ -105,26 +105,24 @@ fun OneTapSignInWithGoogle(
                                 onTokenIdReceived = onTokenIdReceived,
                                 onDialogDismissed = onDialogDismissed
                             )
-                        }
-                    } else {
-                        try {
-                            val errorMessage = if (e.message != null) {
-                                if (e.message!!.contains("activity is cancelled by the user.")) {
-                                    "Dialog Closed."
-                                } else if (e.message!!.contains("Caller has been temporarily blocked")) {
-                                    "Sign in has been Temporarily Blocked due to too many Closed Prompts."
-                                } else {
-                                    e.message.toString()
-                                }
-                            } else "Unknown Error."
-                            Log.e(TAG, errorMessage)
-                            onDialogDismissed(errorMessage)
-                            state.close()
-                        } catch (e: Exception) {
-                            Log.e(TAG, "${e.message}")
+                        } else {
+                            Log.e(TAG, "GetCredentialException: $e")
                             onDialogDismissed("${e.message}")
                             state.close()
                         }
+                    } else {
+                        val errorMessage = if (e.message != null) {
+                            if (e.message!!.contains("activity is cancelled by the user.")) {
+                                "Dialog Closed."
+                            } else if (e.message!!.contains("Caller has been temporarily blocked")) {
+                                "Sign in has been Temporarily Blocked due to too many Closed Prompts."
+                            } else {
+                                e.message.toString()
+                            }
+                        } else "Unknown Error."
+                        Log.e(TAG, "Message null: $errorMessage")
+                        onDialogDismissed(errorMessage)
+                        state.close()
                     }
                 } catch (e: Exception) {
                     if (e.message != null) {
@@ -138,9 +136,13 @@ fun OneTapSignInWithGoogle(
                                 onTokenIdReceived = onTokenIdReceived,
                                 onDialogDismissed = onDialogDismissed
                             )
+                        } else {
+                            Log.e(TAG, "handleSignIn() Error: $e")
+                            onDialogDismissed("${e.message}")
+                            state.close()
                         }
                     } else {
-                        Log.e(TAG, "${e.message}")
+                        Log.e(TAG, "Message null: $e")
                         onDialogDismissed("${e.message}")
                         state.close()
                     }
@@ -226,30 +228,26 @@ private suspend fun handleCredentialsNotAvailable(
                     e.message.toString()
                 }
             } else "Unknown Error."
-            Log.e(TAG, errorMessage)
+            Log.e(TAG, "GetCredentialException Error $errorMessage")
             onDialogDismissed(errorMessage)
             state.close()
         } catch (e: Exception) {
-            Log.e(TAG, "${e.message}")
+            Log.e(TAG, "HandleCredentialNotAvailable Error: $e")
             onDialogDismissed("${e.message}")
             state.close()
         }
     } catch (e: Exception) {
-        Log.e(TAG, "${e.message}")
+        Log.e(TAG, "HandleCredentialNotAvailable Error 2: $e")
         onDialogDismissed("${e.message}")
         state.close()
     }
 }
 
 fun openGoogleAccountSettings(context: Context) {
-    try {
-        val addAccountIntent = Intent(Settings.ACTION_ADD_ACCOUNT).apply {
-            putExtra(Settings.EXTRA_ACCOUNT_TYPES, arrayOf("com.google"))
-        }
-        context.startActivity(addAccountIntent)
-    } catch (e: Exception) {
-        Log.e(TAG, "openGoogleAccountSettings Error: $e")
+    val addAccountIntent = Intent(Settings.ACTION_ADD_ACCOUNT).apply {
+        putExtra(Settings.EXTRA_ACCOUNT_TYPES, arrayOf("com.google"))
     }
+    context.startActivity(addAccountIntent)
 }
 
 //@Composable

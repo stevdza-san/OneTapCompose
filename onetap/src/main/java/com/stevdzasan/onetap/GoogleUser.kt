@@ -33,7 +33,7 @@ fun getUserFromTokenId(tokenId: String): GoogleUser? {
             sub = jwt.claims[Claims.SUB]?.asString(),
             email = jwt.claims[Claims.EMAIL]?.asString(),
             emailVerified = jwt.claims[Claims.EMAIL_VERIFIED]?.asBoolean(),
-            fullName = jwt.claims[Claims.FUll_NAME]?.asString(),
+            fullName = jwt.claims[Claims.FULL_NAME]?.asString(),
             givenName = jwt.claims[Claims.GIVEN_NAME]?.asString(),
             familyName = jwt.claims[Claims.FAMILY_NAME]?.asString(),
             picture = jwt.claims[Claims.PICTURE]?.asString(),
