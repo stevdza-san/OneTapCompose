@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -37,6 +38,8 @@ import androidx.compose.ui.unit.dp
  * and quicker sign in process. Set this value to false, if you always want be prompted
  * to select from multiple available accounts.
  * @param nonce Optional nonce that can be used when generating a Google Token ID
+ * @param label The text to be displayed in the label. Supported default languages are EN, DE, ES,
+ * FR, IT, and PT.
  * @param onTokenIdReceived Lambda that will be triggered after a successful
  * authentication. Returns a Token ID.
  * @param onUserReceived This function returns a [GoogleUser] object using the received tokenId.
@@ -57,6 +60,7 @@ fun OneTapGoogleButton(
     state: OneTapSignInState = rememberOneTapSignInState(),
     rememberAccount: Boolean = true,
     nonce: String? = null,
+    label: String = stringResource(id = R.string.label),
     onTokenIdReceived: ((String) -> Unit)? = null,
     onUserReceived: ((GoogleUser) -> Unit)? = null,
     onDialogDismissed: ((String) -> Unit)? = null,
@@ -124,7 +128,7 @@ fun OneTapGoogleButton(
         )
         if (!iconOnly) {
             Text(
-                text = "Sign in with Google",
+                text = label,
                 maxLines = 1,
                 fontFamily = RobotoFontFamily,
             )
