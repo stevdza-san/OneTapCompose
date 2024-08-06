@@ -107,7 +107,7 @@ fun OneTapSignInWithGoogle(
                             )
                         } else {
                             Log.e(TAG, "GetCredentialException: $e")
-                            onDialogDismissed("${e.message}")
+                            onDialogDismissed("$e")
                             state.close()
                         }
                     } else {
@@ -117,7 +117,7 @@ fun OneTapSignInWithGoogle(
                             } else if (e.message!!.contains("Caller has been temporarily blocked")) {
                                 "Sign in has been Temporarily Blocked due to too many Closed Prompts."
                             } else {
-                                e.message.toString()
+                                e.toString()
                             }
                         } else "Unknown Error."
                         Log.e(TAG, "Message null: $errorMessage")
@@ -138,12 +138,12 @@ fun OneTapSignInWithGoogle(
                             )
                         } else {
                             Log.e(TAG, "handleSignIn() Error: $e")
-                            onDialogDismissed("${e.message}")
+                            onDialogDismissed("$e")
                             state.close()
                         }
                     } else {
                         Log.e(TAG, "Message null: $e")
-                        onDialogDismissed("${e.message}")
+                        onDialogDismissed("$e")
                         state.close()
                     }
                 }
@@ -225,7 +225,7 @@ private suspend fun handleCredentialsNotAvailable(
                 } else if (e.message!!.contains("Caller has been temporarily blocked")) {
                     "Sign in has been Temporarily Blocked due to too many Closed Prompts."
                 } else {
-                    e.message.toString()
+                    e.toString()
                 }
             } else "Unknown Error."
             Log.e(TAG, "GetCredentialException Error $errorMessage")
@@ -233,12 +233,12 @@ private suspend fun handleCredentialsNotAvailable(
             state.close()
         } catch (e: Exception) {
             Log.e(TAG, "HandleCredentialNotAvailable Error: $e")
-            onDialogDismissed("${e.message}")
+            onDialogDismissed("$e")
             state.close()
         }
     } catch (e: Exception) {
         Log.e(TAG, "HandleCredentialNotAvailable Error 2: $e")
-        onDialogDismissed("${e.message}")
+        onDialogDismissed("$e")
         state.close()
     }
 }
