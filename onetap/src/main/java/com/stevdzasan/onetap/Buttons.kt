@@ -1,5 +1,6 @@
 package com.stevdzasan.onetap
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -11,10 +12,12 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -24,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * Composable that allows you to easily integrate One-Tap Sign in with Google in your project while
@@ -33,10 +37,12 @@ import androidx.compose.ui.unit.dp
  * Branding Guidelines</a>
  *
  * @param clientId CLIENT ID (Web) of your project, that you can obtain from a Google Cloud Platform.
- * @param state One-Tap Sign in State.
  * @param rememberAccount Remember a selected account to sign in with, for an easier
  * and quicker sign in process. Set this value to false, if you always want be prompted
  * to select from multiple available accounts.
+ * @param context The context in which the composable is being called. This is typically
+ *  the activity or application context and is used for accessing system resources
+ *  or services.
  * @param nonce Optional nonce that can be used when generating a Google Token ID
  * @param label The text to be displayed in the label. Supported default languages are EN, DE, ES,
  * FR, IT, and PT.
@@ -46,6 +52,9 @@ import androidx.compose.ui.unit.dp
  * @param onDialogDismissed Lambda that will be triggered when One-Tap dialog disappears.
  * Returns a message in a form of a string.
  * @param iconOnly Whether the button should only show the Google logo.
+ * @param scope The CoroutineScope in which asynchronous operations are executed. This allows
+ *  for managing the lifecycle of coroutines, ensuring they are canceled appropriately
+ *   when the composable is no longer in use.
  * @param theme Sets the button style to either be Light, Dark, or Neutral which is in accordance
  * with the official Google design guidelines.
  * @param colors [ButtonColors] that will be used to resolve the colors for this button in different
@@ -57,14 +66,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun OneTapGoogleButton(
     clientId: String,
-    state: OneTapSignInState = rememberOneTapSignInState(),
     rememberAccount: Boolean = true,
+    context: Context = LocalContext.current,
     nonce: String? = null,
     label: String = stringResource(id = R.string.label),
     onTokenIdReceived: ((String) -> Unit)? = null,
     onUserReceived: ((GoogleUser) -> Unit)? = null,
     onDialogDismissed: ((String) -> Unit)? = null,
     iconOnly: Boolean = false,
+    scope: CoroutineScope = rememberCoroutineScope(),
     theme: GoogleButtonTheme = if (isSystemInDarkTheme()) GoogleButtonTheme.Dark
     else GoogleButtonTheme.Light,
     colors: ButtonColors = ButtonDefaults.buttonColors(
@@ -94,11 +104,12 @@ fun OneTapGoogleButton(
     shape: Shape = ButtonDefaults.shape,
     onClick: (() -> Unit)? = null,
 ) {
-    OneTapSignInWithGoogle(
-        state = state,
-        clientId = clientId,
-        rememberAccount = rememberAccount,
-        nonce = nonce,
+    val oneTapCompose = OneTapCompose(
+        clientId,
+        rememberAccount,
+        context,
+        scope,
+        nonce,
         onTokenIdReceived = { tokenId ->
             onTokenIdReceived?.invoke(tokenId)
             getUserFromTokenId(tokenId = tokenId)?.let { googleUser ->
@@ -107,14 +118,14 @@ fun OneTapGoogleButton(
         },
         onDialogDismissed = { message ->
             onDialogDismissed?.invoke(message)
-        }
+        },
     )
 
     Button(
         modifier = Modifier.width(if (iconOnly) 40.dp else Dp.Unspecified),
         onClick = {
-            state.open()
             onClick?.invoke()
+            oneTapCompose.oneTapSignInWithGoogle()
         },
         shape = shape,
         colors = colors,
@@ -153,6 +164,7 @@ private fun LightIconButtonPreview() {
         clientId = "test_id",
         theme = GoogleButtonTheme.Light,
         iconOnly = true,
+        context = LocalContext.current,
     )
 }
 
@@ -163,6 +175,7 @@ private fun DarkIconButtonPreview() {
         clientId = "test_id",
         theme = GoogleButtonTheme.Dark,
         iconOnly = true,
+        context = LocalContext.current,
     )
 }
 
@@ -173,6 +186,7 @@ private fun NeutralIconButtonPreview() {
         clientId = "test_id",
         theme = GoogleButtonTheme.Neutral,
         iconOnly = true,
+        context = LocalContext.current,
     )
 }
 
@@ -182,6 +196,7 @@ private fun LightFullButtonPreview() {
     OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Light,
+        context = LocalContext.current,
     )
 }
 
@@ -191,6 +206,7 @@ private fun DarkFullButtonPreview() {
     OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Dark,
+        context = LocalContext.current,
     )
 }
 
@@ -200,5 +216,6 @@ private fun NeutralFullButtonPreview() {
     OneTapGoogleButton(
         clientId = "test_id",
         theme = GoogleButtonTheme.Neutral,
+        context = LocalContext.current,
     )
 }
