@@ -51,14 +51,14 @@ class OneTapCompose(
         const val GET_CREDENTIAL_EXCEPTION = "GetCredentialException"
         const val DIALOG_CLOSED = "Dialog Closed"
         const val UNKNOWN_ERROR = "Unknown Error"
-        const val TEMPORARILY_BLOCKED =
-            "Sign in has been Temporarily Blocked due to too many Closed Prompts"
+        const val TEMPORARILY_BLOCKED = "Temporarily Blocked due to too many Closed Prompts"
         const val NO_CREDENTIALS = "No credentials available"
         const val SELECTOR_CANCELLED = "User cancelled the selector"
         const val ACTIVITY_CANCELLED = "activity is cancelled by the user"
         const val CALLER_BLOCKED = "Caller has been temporarily blocked"
         const val INVALID_TOKEN_GOOGLE = "Invalid Google tokenId response"
         const val UNEXPECTED_TYPE_CREDENTIAL = "Unexpected Type of Credential"
+        const val CANCELLED_USER = "Cancelled by user"
     }
 
     fun oneTapSignInWithGoogle() = run {
@@ -69,7 +69,7 @@ class OneTapCompose(
             val credentialResponse = try {
                 credentialManager.getCredential(context, request)
             } catch (exception: GetCredentialException) {
-                return@launch handleFailure(credentialManager, exception)
+                return@launch handleFailure(exception)
             }
 
             handleSignIn(credentialResponse)
@@ -94,16 +94,13 @@ class OneTapCompose(
         onTokenIdReceived(googleIdTokenCredential.idToken)
     }
 
-    private suspend fun handleFailure(
-        credentialManager: CredentialManager,
-        exception: GetCredentialException,
-    ) {
+    private fun handleFailure(exception: GetCredentialException) {
         val errorMessage = exception.message ?: UNKNOWN_ERROR
 
         when {
             errorMessage.contains(SELECTOR_CANCELLED, ignoreCase = true) || errorMessage.contains(
                 ACTIVITY_CANCELLED, ignoreCase = true
-            ) -> {
+            ) || errorMessage.contains(CANCELLED_USER, ignoreCase = true) -> {
                 logAndDismiss(Log.DEBUG, "$GET_CREDENTIAL_EXCEPTION: $DIALOG_CLOSED")
             }
 
@@ -112,24 +109,12 @@ class OneTapCompose(
             }
 
             errorMessage.contains(NO_CREDENTIALS, ignoreCase = true) -> {
+                logAndDismiss(Log.ERROR, "$GET_CREDENTIAL_EXCEPTION: $NO_CREDENTIALS")
                 openGoogleAccountSettings()
-                handleCredentialsNotAvailable(credentialManager)
             }
 
             else -> logAndDismiss(Log.ERROR, "$GET_CREDENTIAL_EXCEPTION: $errorMessage")
         }
-    }
-
-    private suspend fun handleCredentialsNotAvailable(credentialManager: CredentialManager) {
-        val request = createCredentialRequest()
-
-        val credentialResponse = try {
-            credentialManager.getCredential(context, request)
-        } catch (exception: GetCredentialException) {
-            return handleFailure(credentialManager, exception)
-        }
-
-        handleSignIn(credentialResponse)
     }
 
     private fun createCredentialRequest(): GetCredentialRequest {
