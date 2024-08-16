@@ -1,7 +1,7 @@
 <h1 align="center">One-Tap Sign in with Google</h1></br>
 
 <p align="center">
-  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.13"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.13/orange?icon=github"/></a>
+  <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.14"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.14/orange?icon=github"/></a>
   <a href="https://github.com/stevdza-san"><img alt="Profile" src="https://badgen.net/badge/Github/stevdza_san/green?icon=github"/></a>
 </p><br>
 
@@ -16,14 +16,14 @@ It hides all the boilerplate code away from you. You get an extracted <a href="#
 </p>
 
 # Download
-<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.13"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.13/orange?icon=github"/></a>
+<a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.14"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.14/orange?icon=github"/></a>
 
 ### Gradle
 
 Add the dependency below to your module's `build.gradle` file:
 ```gradle
 dependencies {
-    implementation("com.github.stevdza-san:OneTapCompose:1.0.13")
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.14")
 }
 ```
 Add a repository in your `settings.gradle` file:
