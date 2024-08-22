@@ -116,7 +116,7 @@ class OneTapCompose(
                 logAndDismiss(Log.ERROR, "$GET_CREDENTIAL_EXCEPTION: $NO_CREDENTIALS")
                 openGoogleAccountSettings()
             }
-
+            
             else -> logAndDismiss(Log.ERROR, "$GET_CREDENTIAL_EXCEPTION: $errorMessage")
         }
     }
