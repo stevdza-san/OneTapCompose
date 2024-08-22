@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -139,5 +143,86 @@ class OneTapCompose(
     private fun logAndDismiss(logLevel: Int, message: String) {
         Log.println(logLevel, TAG_ONE_TAP_COMPOSE, message)
         onDialogDismissed(message)
+    }
+}
+
+/**
+ * This function is deprecated. Use the new `OneTapCompose` class instead for better
+ * functionality and maintainability.
+ *
+ * @deprecated Use OneTapCompose().oneTapSignInWithGoogle()for enhanced functionality
+ *  and better integration with modern Compose practices.
+ *
+ * Composable that allows you to easily integrate One-Tap Sign in with Google in your project.
+ *
+ * @param state - One-Tap Sign in State.
+ * @param clientId - CLIENT ID (Web) of your project, that you can obtain from
+ * a Google Cloud Platform.
+ * @param rememberAccount - Remember a selected account to sign in with, for an easier
+ * and quicker sign in process. Set this value to false, if you always want be prompted
+ * to select from multiple available accounts. You will be able to automatically sign in
+ * with a remembered account, only if you have selected a single account from the list.
+ * @param nonce - Optional nonce that can be used when generating a Google Token ID.
+ * @param onTokenIdReceived - Lambda that will be triggered after a successful
+ * authentication. Returns a Token ID.
+ * @param onDialogDismissed - Lambda that will be triggered when One-Tap dialog
+ * disappears. Returns a message in a form of a string.
+ * */
+@Deprecated(
+    message = "This functional is deprecated. Use OneTapCompose() instead.",
+    replaceWith = ReplaceWith(
+        """
+           val oneTapCompose = OneTapCompose(
+                clientId, 
+                rememberAccount, 
+                context, 
+                scope, 
+                nonce, 
+                onTokenIdReceived = { token ->
+                    Log.d("MainActivity", token)
+                }, 
+                onDialogDismissed = { message ->
+                    Log.d("MainActivity", message)
+                }
+           )
+           
+            Button(onClick = { oneTapCompose.oneTapSignInWithGoogle() }) {
+                Text(text = "Sign in with Google")
+            }
+        """
+    )
+)
+@Composable
+fun OneTapSignInWithGoogle(
+    state: OneTapSignInState,
+    clientId: String,
+    rememberAccount: Boolean = true,
+    nonce: String? = null,
+    onTokenIdReceived: (String) -> Unit,
+    onDialogDismissed: (String) -> Unit,
+) {
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = state.opened) {
+        if (state.opened) {
+            scope.launch {
+                OneTapCompose(
+                    clientId,
+                    rememberAccount,
+                    context,
+                    scope,
+                    nonce,
+                    onTokenIdReceived = {
+                        onTokenIdReceived(it)
+                        state.close()
+                    },
+                    onDialogDismissed = {
+                        onDialogDismissed(it)
+                        state.close()
+                    }
+                ).oneTapSignInWithGoogle()
+            }
+        }
     }
 }
