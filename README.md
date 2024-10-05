@@ -1,5 +1,18 @@
 <h1 align="center">One-Tap Sign in with Google</h1></br>
 
+<h1 align="center">Developer Notice ⚠️</h1> 
+<p align="center">
+I'm not planning to maintain this library anymore, because there's already a better solution which is KMP ready, and available for both Android and iOS. Please do migrate to a new KMP Auth library <a href="https://github.com/mirzemehdi/KMPAuth">HERE</a>
+</p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <p align="center">
   <a href="https://jitpack.io/#stevdza-san/OneTapCompose/1.0.14"><img alt="License" src="https://badgen.net/badge/Jitpack/1.0.14/orange?icon=github"/></a>
   <a href="https://github.com/stevdza-san"><img alt="Profile" src="https://badgen.net/badge/Github/stevdza_san/green?icon=github"/></a>
